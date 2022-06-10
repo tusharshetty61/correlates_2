@@ -12,7 +12,7 @@ app.use(cors());
 let db;
 
 // ***Replace the URL below with the URL for your database***
-const url =  'mongodb://127.0.0.1:27017/clicks';
+const url =  'mongodb://127.0.0.1:27017/tasks';
 // E.g. for option 2) above this will be:
 // const url =  'mongodb://localhost:21017/databaseName';
 
@@ -32,23 +32,9 @@ app.get('/', (req, res) => {
   res.sendFile('index.html');
 });
 
-app.post('/clicked', (req, res) => {
-  const click = {clickTime: new Date()};
-  console.log(click);
-  console.log(db);
-
-  db.collection('clicks').insertOne(click, (err, result) => {
-    if (err) {
-      return console.log(err);
-    }
-    console.log('click added to db');
-    res.sendStatus(201);
-  });
-});
-
 app.get('/clicks', (req, res) => {
 
-  db.collection('clicks').find().toArray((err, result) => {
+  db.collection('tasks').find().toArray((err, result) => {
     if (err) return console.log(err);
     res.send(result);
   });
