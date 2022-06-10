@@ -20,7 +20,7 @@ MongoClient.connect(url, (err, database) => {
   if(err) {
     return console.log(err);
   }
-  db = database.db('clicks');
+  db = database.db('tasks');
   // start the express web server listening on 8080
   app.listen(8080, () => {
     console.log('listening on 8080');
@@ -32,9 +32,9 @@ app.get('/', (req, res) => {
   res.sendFile('index.html');
 });
 
-app.get('/clicks', (req, res) => {
+app.get('/clicked', (req, res) => {
 
-  db.collection('tasks').find().toArray((err, result) => {
+  db.collection('tasklink').find().toArray((err, result) => {
     if (err) return console.log(err);
     res.send(result);
   });

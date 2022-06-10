@@ -13,26 +13,26 @@ button.addEventListener('click', function(e) {
       throw new Error('Request failed.');
     })
     .then(function(data){
-      let copyText = data[0]; 
+      console.log(data);
+      let copyText = data[0].link; 
       navigator.clipboard.writeText(copyText)
-
+      console.log("Copied the text: " + copyText);
     })
     .catch(function(error) {
       console.log(error);
     });
 });
 
-setInterval(function() {
-    fetch('http://localhost:8080/clicks', {method: 'GET'})
+//setInterval(function() {
+ //   fetch('http://localhost:8080/clicks', {method: 'GET'})
       
-      .then(function(data) {
-        document.getElementById('counter').innerHTML = `Button was clicked ${data[0]} times`;
-      })
-      .catch(function(error) {
-        console.log(error);
-      });
-  }, 1000);
-
+//      .then(function(data) {
+//        document.getElementById('counter').innerHTML = `Button was clicked ${data[0]} times`;
+ //     })
+ //     .catch(function(error) {
+ //     console.log(error);
+ //     });
+ // }, 1000);
 
 
 
