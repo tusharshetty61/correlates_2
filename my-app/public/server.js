@@ -12,7 +12,7 @@ app.use(cors());
 let db;
 
 // ***Replace the URL below with the URL for your database***
-const url =  'mongodb://127.0.0.1:27017/tasks';
+const url =  'mongodb://127.0.0.1:27017';
 // E.g. for option 2) above this will be:
 // const url =  'mongodb://localhost:21017/databaseName';
 
@@ -39,3 +39,10 @@ app.get('/clicked', (req, res) => {
     res.send(result);
   });
 });
+
+app.get('/show_deets',(req,res) => {
+  db.collection('form_deets').find().toArray((err,result)=>{
+    if(err) return console.log(err);
+    res.send(result);
+  })
+})
