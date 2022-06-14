@@ -42,12 +42,34 @@ button1.addEventListener('click', function(e) {
     .then(function(response) {
       if(response.ok) {
         console.log('Click was recorded');
+        console.log(response);
         return response.json();
       }
       throw new Error('Request failed.');
     })
     .then(function(data){
-      document.getElementById('counter').innerHTML = data[0];
+      console.log(data);
+      for (let i=0; i<data.length ;i++){
+        var tag1 = document.createElement("p");
+        var tag2= document.createElement("p");
+        var tag3= document.createElement("p");
+        var tag4= document.createElement("p");
+        console.log(data)
+        console.log(data[i].rating)
+        var text1 = document.createTextNode("User" + (i+1).toString());
+        var text2 = document.createTextNode(data[i].rating);
+        var text3 = document.createTextNode(data[i].shortAns);
+        var text4= document.createTextNode(data[i].sliderVal);
+        tag1.appendChild(text1);
+        tag2.appendChild(text2);
+        tag3.appendChild(text3);
+        tag4.appendChild(text4);
+        var element = document.getElementById("new");
+        element.appendChild(tag1);
+        element.appendChild(tag2);
+        element.appendChild(tag3);
+        element.appendChild(tag4);
+      };
     })
     .catch(function(error) {
       console.log(error);

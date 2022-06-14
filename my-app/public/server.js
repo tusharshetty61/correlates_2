@@ -12,7 +12,7 @@ app.use(cors());
 let db;
 
 // ***Replace the URL below with the URL for your database***
-const url =  'mongodb://127.0.0.1:27017';
+const url = "mongodb+srv://neuralcorrelates:correlates@nc.qqlrl.mongodb.net/?retryWrites=true&w=majority";
 // E.g. for option 2) above this will be:
 // const url =  'mongodb://localhost:21017/databaseName';
 
@@ -20,7 +20,7 @@ MongoClient.connect(url, (err, database) => {
   if(err) {
     return console.log(err);
   }
-  db = database.db('tasks');
+  db = database.db('test');
   // start the express web server listening on 8080
   app.listen(8080, () => {
     console.log('listening on 8080');
@@ -34,14 +34,14 @@ app.get('/', (req, res) => {
 
 app.get('/clicked', (req, res) => {
 
-  db.collection('tasklink').find().toArray((err, result) => {
+  db.collection('form_link').find().toArray((err, result) => {
     if (err) return console.log(err);
     res.send(result);
   });
 });
 
 app.get('/show_deets',(req,res) => {
-  db.collection('form_deets').find().toArray((err,result)=>{
+  db.collection('responses').find().toArray((err,result)=>{
     if(err) return console.log(err);
     res.send(result);
   })
